@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
-namespace printer_main
+namespace PrinterInterface
 {
     class Program
     {
         static void Main(string[] args)
         {
-            PrinterWindows printer;
+            IPrinterWindows printer;
             Console.WriteLine("Pilih Printer");
             Console.WriteLine("1. Epson");
             Console.WriteLine("2. Canon");
@@ -19,7 +20,7 @@ namespace printer_main
             Console.WriteLine("Nomor Printer [1..3] : ");
             int nomor = Convert.ToInt16(Console.ReadLine());
             Console.WriteLine("");
-     
+
             if (nomor == 1)
                 printer = new Epson();
             else if (nomor == 2)
@@ -35,20 +36,20 @@ namespace printer_main
     }
 }
 
-public class PrinterWindows
+public class IPrinterWindows
 {
 
-    public virtual void show ()
+    public virtual void show()
     {
         Console.WriteLine("Print Display Dimension");
     }
-    public virtual void print ()
+    public virtual void print()
     {
         Console.WriteLine("Printer Printing ....");
     }
 }
 
-public class Epson : PrinterWindows
+public class Epson : IPrinterWindows
 {
     public override void show()
     {
@@ -60,7 +61,7 @@ public class Epson : PrinterWindows
     }
 }
 
-public class Canon : PrinterWindows
+public class Canon : IPrinterWindows
 {
     public override void show()
     {
@@ -72,7 +73,7 @@ public class Canon : PrinterWindows
     }
 }
 
-public class Lasetjat : PrinterWindows
+public class Lasetjat : IPrinterWindows
 {
     public override void show()
     {
